@@ -37,7 +37,6 @@ document.onkeyup = function(event) {
         alert("You lose, try again.");
         reset();
     }
-
 };
 
 //reset and functions for the reset
