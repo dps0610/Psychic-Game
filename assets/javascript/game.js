@@ -6,14 +6,9 @@ var guessesRemaining = 9
 var possibleLetters = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"]
 var randomLetter = null
 
-
-//Generate random letter from array
-var updateRandomLetter = function () {
+//Generate Random letter from arry to start
 randomLetter = possibleLetters[Math.floor(Math.random() * possibleLetters.length)];
-console.log(randomLetter)
-}
-
-updateRandomLetter ()
+  console.log(randomLetter)
 
 //when user presses key, runs function
 document.onkeyup = function(event) {
@@ -31,12 +26,12 @@ document.onkeyup = function(event) {
     }
 
     // Incorrect Guess
-    else if (letter !== randomLetter) {
+    if (letter !== randomLetter) {
       document.querySelector("#guesses-remaining").innerHTML = guessesRemaining;
     }
 
     // Loss Condition
-    else if (guessesRemaining === 0) {
+    if (guessesRemaining === 0) {
         loss++;
         document.querySelector("#losses-text").innerHTML = loss;
         alert("You lose, try again.");
@@ -45,9 +40,24 @@ document.onkeyup = function(event) {
 
 };
 
-//reset
+//reset and functions for the reset
 var reset = function () {
     guessesRemaining = 9;
     lettersGuessed = [];
-    updateRandomLetter ()
+    resetRandomLetter();
+    resetLettersGuessed();
+    resetGuesses();
+}
+
+var resetRandomLetter = function () {
+  randomLetter = possibleLetters[Math.floor(Math.random() * possibleLetters.length)];
+  console.log(randomLetter)
+  }
+
+var resetLettersGuessed = function () {
+  document.querySelector("#letters-guessed").innerHTML = lettersGuessed.join(", ")
+}
+
+var resetGuesses = function () {
+  document.querySelector("#guesses-remaining").innerHTML = guessesRemaining
 }
